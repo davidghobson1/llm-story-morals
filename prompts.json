@@ -1,0 +1,11 @@
+{
+    "summary": "Can you summarize this story? State your answer as a single paragraph.",
+    "protagonist": "Who is the protagonist of this story? State your answer as a single name. If the protagonist is the narrator, state 'Narrator'",
+    "protagonist_type": "Is the protagonist a hero, a villain, or a victim? That is, are they portrayed positively or negatively or are they a victim? You may choose more than one. State your answer as a single keyword ('Hero', 'Villain', 'Victim') or list of keywords. If none, say 'None'.",
+    "antagonist": "Who is the antagonist of this story? State your answer as a single name. If there is none, say 'None'",
+    "central_topic": "What is the central topic or issue of this story? State your answer as a single keyword or phrase.",
+    "valence": "Is this story more negative or positive? State your answer as a single number between 1 and 5 where 5 = very positive, 4 = positive, 3 = neutral, 2 = negative, 1 = very negative",
+    "moral": "What is the moral of this story? State your answer as a single sentence.",
+    "moral+": "What is the moral of this story? State your answer in the form '<keyword/actionable phrase> is good behavior'.",
+    "moral-": "What is the moral of this story? State your answer in the form '<keyword/actionable phrase> is bad behavior'."
+}
