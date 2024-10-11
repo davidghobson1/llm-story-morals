@@ -2,9 +2,11 @@
 
 This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://arxiv.org/abs/2030.12345). 
 
->📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials
+This contains the data used for the project. Code will be added shortly. 
 
-## Requirements
+<!-- >📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials -->
+
+<!-- ## Requirements
 
 To install requirements:
 
@@ -58,4 +60,4 @@ Our model achieves the following performance on :
 ## Contributing
 
 >📋  Pick a licence and describe how to contribute to your code repository. 
-
+ -->
