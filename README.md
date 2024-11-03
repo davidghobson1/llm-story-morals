@@ -2,7 +2,7 @@
 
 This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://arxiv.org/abs/2030.12345). 
 
-This contains the data, codebooks, and prompts used for the project. Code will be added shortly. 
+This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce the clustering results and recreate Tables 4 and 10 in the paper. Additional code to reproduce the other tables will be added shortly. 
 
 ## Clustering
 
