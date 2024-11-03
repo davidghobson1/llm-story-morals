@@ -4,6 +4,24 @@ This repository is the official implementation of [Story Morals: Surfacing value
 
 This contains the data, codebooks, and prompts used for the project. Code will be added shortly. 
 
+## Clustering
+
+To run the moral clustering code from our paper, run this command:
+
+```
+python moral_clustering.py -col <column_name>
+```
+
+`column_name` can either be:
+- moral: for the full-sentence morals
+- moral+: positive morals
+- moral-: negative morals
+- text: full-text (with entity replacement already pre-applied)
+- orig_text: full-text with entity replacement not pre-applied
+
+See `python moral_clustering.py -h` for more options and explanations.
+
+
 <!-- >📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials -->
 
 <!-- ## Requirements
@@ -18,10 +36,10 @@ pip install -r requirements.txt
 
 ## Training
 
-To train the model(s) in the paper, run this command:
+To run the moral clustering, run this command:
 
 ```train
-python train.py --input-data <path_to_data> --alpha 10 --beta 20
+python moral_clustering.py -col <column_name>
 ```
 
 >📋  Describe how to train the models, with example commands on how to train the models in your paper, including the full training procedure and appropriate hyperparameters.
