@@ -14,7 +14,7 @@ conda env create -n <env_name> -f environment.yml
 
 ## Clustering
 
-To run the moral clustering code from our paper, run this command:
+To run the moral clustering code from our paper (which recreates Figures 1-3 and the results from Tables 5, 6, 14-17 (as well as the hyperparameter tuning code)), run this command:
 
 ```
 python moral_clustering.py -col <column_name>
@@ -29,6 +29,19 @@ python moral_clustering.py -col <column_name>
 
 See `python moral_clustering.py -h` for more options and explanations.
 
+## Validation
+
+To reproduce the automated validation results (Tables 3, 11), run this command:
+
+```
+python automated_validation.py -cate <category_name>
+```
+
+`category_name` can either be:
+- moral: for the full-sentence morals
+- moral+: positive morals
+- moral-: negative morals
+- central_topic: topic
 
 <!-- >📋  Optional: include a graphic explaining your approach/main result, bibtex entry, link to demos, blog posts and tutorials -->
 
