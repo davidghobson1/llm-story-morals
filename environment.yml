@@ -1,0 +1,15 @@
+name: emnlp
+channels:
+  - defaults
+dependencies:
+  - matplotlib
+  - numpy
+  - pandas
+  - scikit-learn
+  - statsmodels
+  - sentence-transformers
+  - scipy
+  - conda-forge::bertopic
+  - umap-learn
+  - conda-forge::python-kaleido
+prefix: /Users/david/anaconda3/envs/emnlp

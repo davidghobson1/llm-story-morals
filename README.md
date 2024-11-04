@@ -1,8 +1,16 @@
 # Story Morals: Surfacing value-driven narrative schemas using large language models
 
-This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://arxiv.org/abs/2030.12345). 
+This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://www.google.com/). 
 
-This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce the clustering results and recreate Tables 4 and 10 in the paper. Additional code to reproduce the other tables will be added shortly. 
+This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce the clustering results and recreate Tables 4 and 10 (the MTurk inter-annotator agreement results) in the paper. Additional code to reproduce the other tables will be added shortly. 
+
+## Requirements
+
+To install the requirements using a conda environment, run this command:
+
+```
+conda env create -n <env_name> -f environment.yml
+```
 
 ## Clustering
 
