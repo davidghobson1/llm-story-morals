@@ -32,6 +32,7 @@ def sbert_cos_sim(preds: pd.Series, refs: pd.Series, model_name: str = "nli-mpne
     v2 = model.encode(refs, convert_to_tensor=True)
     return util.pairwise_cos_sim(v1, v2)
 
+# Compute the intra-dataframe scores between the two dataframes
 def compute_intra_scores(df: pd.DataFrame, score_func: Callable[pd.Series, pd.Series], **kwargs) -> torch.Tensor:
     cols = df.columns
     num_combos = scipy.special.comb(len(cols), 2).astype(int)
@@ -46,7 +47,14 @@ def compute_intra_scores(df: pd.DataFrame, score_func: Callable[pd.Series, pd.Se
             k += 1
     return scores.flatten()
 
-def compute_inter_scores(df1: pd.DataFrame, df2: pd.DataFrame, score_func: Callable[pd.Series, pd.Series], **kwargs) -> torch.Tensor:
+# Compute the inter-dataframe scores between the two dataframes
+def compute_inter_scores(
+        df1: pd.DataFrame, 
+        df2: pd.DataFrame, 
+        score_func: Callable[pd.Series, pd.Series], 
+        **kwargs
+    ) -> torch.Tensor:
+
     if df1.shape[0] != df2.shape[0]:
         print("Error: size mismatch")
         return
@@ -65,10 +73,14 @@ def compute_inter_scores(df1: pd.DataFrame, df2: pd.DataFrame, score_func: Calla
             k += 1
     return scores.flatten()
 
-# df_subset1 is all the human morals, df_subset2 is all the GPT morals
 # Compute the intra and inter-dataframe scores between the two dataframes
 # score_func is a dictionary of the scoring functions to be applied (keys are the human-readable names for the functions)
-def get_distributions(df_subset1: pd.DataFrame, df_subset2: pd.DataFrame, score_funcs: dict[str:dict]) -> dict[str:dict[str:torch.Tensor]]:
+def get_distributions(
+        df_subset1: pd.DataFrame, 
+        df_subset2: pd.DataFrame, 
+        score_funcs: dict[str:dict]
+    ) -> dict[str:dict[str:torch.Tensor]]:
+
     data = {'1-1': dict(), '2-2': dict(), '1-2': dict()}
     for score_name, score_func in score_funcs.items():
         print(f"\t{score_name}")
@@ -103,7 +115,7 @@ if __name__ == "__main__":
     if not os.path.exists(output_filepath):
         os.mkdir(output_filepath)
 
-    results_dir = "/Users/david/Documents/Coding/GitHub/llm-story-morals/data/validation/moral_annotations"
+    results_dir = "../data/validation/moral_annotations"
 
     # Load the response data
     df_eng = pd.read_csv(os.path.join(results_dir, "human_responses_english.csv"), index_col='index').fillna("None")
