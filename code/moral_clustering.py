@@ -3,6 +3,7 @@ import pandas as pd
 
 from sentence_transformers import SentenceTransformer
 
+import torch
 from torch.nn.functional import normalize
 
 from sklearn.preprocessing import minmax_scale
@@ -16,22 +17,24 @@ from scipy.cluster.hierarchy import linkage, fcluster
 from bertopic import BERTopic
 from umap import UMAP
 
+import matplotlib.pyplot as plt
+
 import os
 import argparse
+from typing import Tuple
 from tqdm import tqdm
-import matplotlib.pyplot as plt
 
 DEFAULT_MODEL = "nli-mpnet-base-v2"
 
-# class needed to skip the UMAP step in BERTopic
+# Class needed to skip the UMAP step in BERTopic
 class NoUMAP(UMAP):
     def fit(self, X):
         return X
     def transform(self, X):
         return X
     
-# replace all common names and places with generic ones; text processing for the original full-texts
-def replace_common_ents(docs):
+# Replace all common names and places with generic ones; text processing for the original full-texts
+def replace_common_ents(docs: list[str]) -> list[str]:
     print("Downloading SpaCy to replace the common entities in the texts...")
     import spacy
     import spacy.cli
@@ -50,23 +53,24 @@ def replace_common_ents(docs):
         new_docs.append(" ".join(new_tokens))
     return new_docs
 
+# Get the optimal distance threshold for agglomerative clustering
 def get_optimal_agglomerative_threshold(
-        embs, 
-        method='complete', 
-        lower_bound=0.4, 
-        upper_bound=0.9, 
-        save_plot=True, 
-        output_file="clustering_hyperparameter_plot.jpg"
-    ):
+        embs: torch.Tensor, 
+        method: str ='complete', 
+        lower_bound: float = 0.4, 
+        upper_bound: float = 0.9, 
+        save_plot: bool = True, 
+        output_file: str = "clustering_hyperparameter_plot.jpg"
+    ) -> float:
 
-    # normalize the embeddings for calinski (it uses euclidean distance; related to cosine distance on unit sphere)
+    # Normalize the embeddings for calinski (it uses euclidean distance; related to cosine distance on unit sphere)
     norm_embs = normalize(embs, dim=1)
 
-    # compute the linkage matrix for agglomerative clustering
+    # Compute the linkage matrix for agglomerative clustering
     dists = pdist(embs, metric='cosine')
     Z = linkage(dists, method=method)
 
-    # scan through the distance thresholds and compute the Silhouette, Calinksi-Harabasz, and Davies Bouldin scores
+    # Scan through the distance thresholds and compute the Silhouette, Calinksi-Harabasz, and Davies Bouldin scores
     t_vals = np.arange(start=0.2, stop=1, step=0.01).round(2)
     silhouette_scores_agg = []
     calinski_harabasz_scores_agg = []
@@ -78,12 +82,12 @@ def get_optimal_agglomerative_threshold(
         calinski_harabasz_scores_agg.append(calinski_harabasz_score(norm_embs, clusters))
         davies_bouldin_scores_agg.append(davies_bouldin_score(embs, clusters))
     
-    # scale the scores (max -> 1 and min -> 0) and plot the scores
+    # Scale the scores (max -> 1 and min -> 0) and plot the scores
     scaled_silhouette = minmax_scale(silhouette_scores_agg)
     scaled_calinski_harabasz = minmax_scale(calinski_harabasz_scores_agg)
     scaled_product = scaled_silhouette*scaled_calinski_harabasz
 
-    # find the optimal threshold
+    # Find the optimal threshold
     lower_cutoff_idx = np.argwhere(t_vals==lower_bound)[0][0]
     upper_cutoff_idx = np.argwhere(t_vals==upper_bound)[0][0]
     optimal_idx = scaled_product[lower_cutoff_idx:upper_cutoff_idx].argmax() + lower_cutoff_idx
@@ -106,8 +110,13 @@ def get_optimal_agglomerative_threshold(
     
     return optimal_threshold
 
-# fit a BERTopic model to the text; UMAP is skipped since it didn't lead to performance gains for our paper
-def get_topic_model(docs, model_name, dist_thres):
+# Fit a BERTopic model to the text; UMAP is skipped since it didn't lead to performance gains for our paper
+# Returns the topic model and the list of cluster indices for the given documents
+def get_topic_model(
+        docs: list[str], 
+        model_name: str, 
+        dist_thres: float
+    ) -> Tuple[BERTopic, list[int]]:
     topic_model = BERTopic(
         embedding_model = model_name,
         umap_model = NoUMAP(),
@@ -132,7 +141,7 @@ if __name__ == "__main__":
     output_filepath = args.output_filepath
     device = args.device
 
-    # make the output directory if it doesn't exist
+    # Make the output directory if it doesn't exist
     if not os.path.exists(output_filepath):
         os.mkdir(output_filepath)
 
@@ -147,7 +156,7 @@ if __name__ == "__main__":
     print("Computing embeddings...")
     embs = model.encode(texts, convert_to_tensor=True).to(device)
 
-    # find the optimal distance threshold for clustering
+    # Find the optimal distance threshold for clustering
     optimal_threshold = get_optimal_agglomerative_threshold(
                         embs, 
                         save_plot=True, 
@@ -155,12 +164,12 @@ if __name__ == "__main__":
                     )
     print(f"\tOptimal distance threshold = {optimal_threshold}")
     
-    # fit the topic model
+    # Fit the topic model
     print("Fitting topic model...")
     docs = df.loc[df[col].notna(), col].values
     topic_model, topics = get_topic_model(docs, model_name, optimal_threshold)
 
-    # save the topic results
+    # Save the topic results
     # topic labels with the input indices
     topic_labels = df['orig_index'].to_frame().join(pd.Series(topics, name=f'{col}_topic'))
     topic_labels.to_csv(os.path.join(output_filepath, f"{col}_topic_assignment.csv"))
