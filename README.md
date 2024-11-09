@@ -1,6 +1,6 @@
 # Story Morals: Surfacing value-driven narrative schemas using large language models
 
-This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://www.google.com/). 
+This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://aclanthology.org/2024.emnlp-main.723/). 
 
 This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce the clustering results and recreate Tables 4 and 10 (the MTurk annotation results) in the paper. Additional code to reproduce the other tables will be added shortly. 
 
