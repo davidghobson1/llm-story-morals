@@ -2,11 +2,11 @@
 
 This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://aclanthology.org/2024.emnlp-main.723/). 
 
-<p align="center">
-    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/sample_moral_clustering.png?raw=true" alt="Results Image" width="400"/>
-</p>
-
 This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce our results. Below is the breakdown of the repo structure.
+
+<p align="center">
+    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/moral_pipeline.png?raw=true" alt="Results Image" width="400"/>
+</p>
 
 ## Repo Structure
 ```
@@ -50,7 +50,17 @@ To install the requirements using a conda environment, run this command:
 conda env create -n <env_name> -f environment.yml
 ```
 
-## Clustering
+## Running the Code
+
+### Notebooks
+
+
+
+### Clustering
+
+<p align="center">
+    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/sample_moral_clustering.png?raw=true" alt="Results Image" width="400"/>
+</p>
 
 To run the moral clustering code from our paper (which recreates Figures 1-3 and the results from Tables 5, 6, 14-17 (as well as the hyperparameter tuning code)), run this command:
 
@@ -67,7 +77,7 @@ python moral_clustering.py -col <column_name>
 
 See `python moral_clustering.py -h` for more options and explanations.
 
-## Validation
+### Validation
 
 To reproduce the automated validation results (Tables 3, 11), run this command:
 
