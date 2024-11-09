@@ -3,7 +3,7 @@
 This repository is the official implementation of [Story Morals: Surfacing value-driven narrative schemas using large language models](https://aclanthology.org/2024.emnlp-main.723/). 
 
 <p align="center">
-    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/sample_moral_clustering.png?raw=true" alt="Results Image" width="500"/>
+    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/sample_moral_clustering.png?raw=true" alt="Results Image" width="400"/>
 </p>
 
 This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce our results. Below is the breakdown of the repo structure.
