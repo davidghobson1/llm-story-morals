@@ -5,7 +5,7 @@ This repository is the official implementation of [Story Morals: Surfacing value
 This contains the data, codebooks, and prompts used for the project, as well as the code to reproduce our results. Below is the breakdown of the repo structure.
 
 <p align="center">
-    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/moral_pipeline.png?raw=true" alt="Results Image" width="500"/>
+    <img src="https://github.com/davidghobson1/llm-story-morals/blob/main/images/moral_pipeline.png?raw=true" alt="Results Image" width="550"/>
 </p>
 
 ## Repo Structure
