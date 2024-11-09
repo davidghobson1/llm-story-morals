@@ -8,31 +8,31 @@ This contains the data, codebooks, and prompts used for the project, as well as 
 ```
 .
 ├── code                                             
-│   ├── Categorical-Automated-Validation.ipynb       # automated comparison of protagonist/antagonist/valence/protagonist type
-│   ├── MTurk-Analysis.ipynb                         # analyse MTurk results
-│   ├── automated_validation.py                      # automated comparison of human vs GPT morals
-│   ├── moral_clustering.py                          # cluster the morals 
+    ├── Categorical-Automated-Validation.ipynb       # automated comparison of protagonist/antagonist/valence/protagonist type
+    ├── MTurk-Analysis.ipynb                         # analyse MTurk results
+    ├── automated_validation.py                      # automated comparison of human vs GPT morals
+    ├── moral_clustering.py                          # cluster the morals 
 |
 ├── codebooks                                        
-│   ├── mturk_survey_template.html                   # Amazon Mechanical Turk validation template/instructions
-│   ├── story_morals_codebook.docx                   # codebook for human story moral annotations
+    ├── mturk_survey_template.html                   # Amazon Mechanical Turk validation template/instructions
+    ├── story_morals_codebook.docx                   # codebook for human story moral annotations
 |
 ├── data                                              
-│   ├── application                                  # data for Application section of paper
-│   │   ├── fairytalez_dataset.csv
-│   │   ├── gpt_responses_fairytalex.csv
-│   ├── validation                                   # data for Validation section of paper
-│   │   ├── moral_annotations                        
-│   │   │   ├── gpt_responses_english.csv            # GPT's responses to the English validation texts
-│   │   │   ├── gpt_responses_mandarin.csv           # GPT's responses to the Mandarin validation texts
-│   │   │   ├── human_responses_english.csv          # human responses to the English validation texts
-│   │   │   ├── human_responses_mandarin.csv         # human responses to the Mandarin validation texts
-│   │   ├── mturk
-│   │   │   ├── mturk_responses.csv                  # responses from MTurk survey
-│   │   ├── validation_dataset.csv                   # text and metadata for the validation dataset 
+    ├── application                                  # data for Application section of paper
+        ├── fairytalez_dataset.csv
+        ├── gpt_responses_fairytalex.csv
+    ├── validation                                   # data for Validation section of paper
+        ├── moral_annotations                        
+            ├── gpt_responses_english.csv            # GPT's responses to the English validation texts
+            ├── gpt_responses_mandarin.csv           # GPT's responses to the Mandarin validation texts
+            ├── human_responses_english.csv          # human responses to the English validation texts
+            ├── human_responses_mandarin.csv         # human responses to the Mandarin validation texts
+        ├── mturk
+            ├── mturk_responses.csv                  # responses from MTurk survey
+        ├── validation_dataset.csv                   # text and metadata for the validation dataset 
 |
 ├── prompts                                            
-│   ├── prompts.json                                 # prompts used in our work
+    ├── prompts.json                                 # prompts used in our work
 |
 ├── environment.yml                                  
 ├── README.md
