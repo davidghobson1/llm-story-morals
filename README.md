@@ -38,17 +38,21 @@ This contains the data, codebooks, and prompts used for the project, as well as 
 ├── prompts                                            
     ├── prompts.json                                 # prompts used in our work
 |
-├── environment.yml                                  
+├── requirements.txt                                  
 ├── README.md
 ```
 
 ## Requirements
 
-To install the requirements using a conda environment, run this command:
+To install the requirements using a Python virtual environment, use the requirements.txt file:
 
 ```
-conda env create -n <env_name> -f environment.yml
+python -m venv <myenv_name>
+source <myenv_name>/bin/activate
+python -m pip install -r requirements.txt
 ```
+
+Unfortunately, I haven't been able to reliably create a conda environment that always runs without errors. I'll include an environment.yml file once I get that to work, and apologize for any inconvenience in the meantime.
 
 ## Running the Code
 
