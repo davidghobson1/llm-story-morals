@@ -52,7 +52,7 @@ source <myenv_name>/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-Unfortunately, I haven't been able to reliably create a conda environment that always runs without errors. I'll include an environment.yml file once I get that to work, and apologize for any inconvenience in the meantime.
+Unfortunately, I haven't been able to reliably create a conda environment that always runs without errors. I'll include an environment.yml file when (and if) I do. Apologies for any inconvenience in the meantime.
 
 ## Running the Code
 
