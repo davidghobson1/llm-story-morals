@@ -42,17 +42,22 @@ This contains the data, codebooks, and prompts used for the project, as well as 
 ├── README.md
 ```
 
-## Requirements
+## Getting Started
 
-To install the requirements using a Python virtual environment, use the requirements.txt file:
+### 1) Anaconda
+```
+conda create -n <myenv_name> python=3.10
+conda activate <myenv_name>
+conda install -c conda-forge pip  # make sure pip is installed
+python -m pip install -r requirements.txt
+```
 
+### 2) Virtual Environment
 ```
 python -m venv <myenv_name>
 source <myenv_name>/bin/activate
 python -m pip install -r requirements.txt
 ```
-
-Unfortunately, I haven't been able to reliably create a conda environment that always runs without errors. I'll include an environment.yml file when (and if) I do. Apologies for any inconvenience in the meantime.
 
 ## Running the Code
 
